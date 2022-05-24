@@ -1,25 +1,36 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from "react";
+import Feed from "./components/Feed";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      feed: [
+        { id: 1, username: "João", curtidas: 10, comentarios: 2 },
+        { id: 2, username: "Julio", curtidas: 320, comentarios: 125 },
+        { id: 3, username: "Tauane", curtidas: 50, comentarios: 10 },
+      ],
+    };
+  }
+
+  render() {
+    return (
+      <div>
+        {this.state.feed.map((item) => {
+          return (
+            <div>
+              <Feed
+                key={item.id}
+                username={item.username}
+                curtidas={item.curtidas}
+                comentarios={item.comentarios}
+              />
+            </div>
+          );
+        })}
+      </div>
+    );
+  }
 }
 
 export default App;
